@@ -21,36 +21,41 @@ export async function listOnus() {
 
       const metadeLength = Math.floor(descriptions.length / 2);
       const length = descriptions.length;
-      const description = "";
+
+      let dataDescriptionArray = [];
+      let dataInfoArray = [];
+
+      for (let i = metadeLength; i < length; i++) {
+        const obj = descriptions[i].split(" ");
+        dataDescriptionArray.push({
+          id_onu: obj[0],
+          description: obj.slice(1).join(" "),
+        });
+      }
+
       for (let i = 0; i < metadeLength; i++) {
         const obj = descriptions[i].split(" ");
-        const onuData = {
+
+        const description = dataDescriptionArray.find(
+          (item) => item.id_onu === obj[0]
+        );
+        dataInfoArray.push({
           id_onu: obj[0],
+          description: description ? description.description : "",
           sn: obj[1],
           control_state: obj[2],
           run_state: obj[3],
           config_state: obj[4],
           match_side: obj[5],
           protect: obj[6],
-        };
-
-        const novaOnu = await Onu.create(onuData);
+        });
+        const novaOnu = await Onu.create(dataInfoArray[i]);
         await novaOnu.save();
-        console.log("Criando ONU no MongoDB:", novaOnu);
+        console.log("Criando ONU no MongoDB:", dataInfoArray);
       }
-      for (let i = metadeLength; i < length; i++) {
-        const obj = descriptions[i].split(" ");
-        const onuData = {
-          id_onu: obj[0],
-          description: obj.slice(1).join(" "),
-        };
-        const updatedOnu = await Onu.findOneAndUpdate(
-          { id_onu: obj[0] },
-          { description: obj[1] },
-          { new: true }
-        );
-        console.log(onuData);
-      }
+
+      console.log(dataDescriptionArray);
+      console.log(dataInfoArray);
     } catch (error) {
       console.error("Erro ao listar ONUs:", error);
     }

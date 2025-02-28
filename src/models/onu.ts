@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const onuSchema = new mongoose.Schema({
   id_onu: { type: String, required: true, unique: true },
-  description: { type: String, required: false },
+  description: { type: String, required: true },
   sn: { type: String, required: true },
   control_state: { type: String, required: true },
   run_state: { type: String, required: true },
