@@ -20,20 +20,6 @@ export async function connectionTelnet() {
   try {
     await connection.connect(params);
     console.log("Conexão realizada com sucesso!");
-    // await connection.send("admin", { waitFor: "User password:" });
-    // await connection.send("admin", { waitFor: ">" });
-
-    // await new Promise((res) => setTimeout(res, 1000));
-
-    // await connection.send("display ont info 0 1 2 all", {
-    //   waitFor: "{ <cr>||<K> }:",
-    // });
-
-    // const res = await connection.send("\r\n", { waitFor: ">" });
-
-    // console.log("Resposta do comando:\n", res);
-
-    //connection.end();
   } catch (error) {
     console.error("Erro na conexão Telnet:", error);
   }

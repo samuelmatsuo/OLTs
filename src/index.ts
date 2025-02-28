@@ -1,4 +1,5 @@
-import { connectionTelnet } from "./connections/connectionTelnet";
+import { listOnus } from "./treatment/list-onus";
+import { oltInfo } from "./treatment/olt-info";
 
-const connection = connectionTelnet();
-
+listOnus();
+//oltInfo("version");
