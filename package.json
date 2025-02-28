@@ -11,9 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "telnet-client": "^2.2.5",
     "dotenv": "^10.0.0",
-    "mongoose": "^8.10.2"
+    "mongo": "^0.1.0",
+    "mongoose": "^8.11.0",
+    "telnet-client": "^2.2.5"
   },
   "devDependencies": {
     "@types/node": "^22.13.5"
