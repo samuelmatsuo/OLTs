@@ -1,9 +1,9 @@
 import { oltListOnus } from "../commands/infoDisco";
-import Onu from "../models/onu";
+import Onu from "../models/olt";
 
 const command = ["display ont info 0 1 2 all", "display ont info 0 1 1 all"];
 export async function listOnus() {
-  function extractOnus(output: string, fsp: string) {
+  function extractOlts(output: string, fsp: string) {
     const matches = output.match(/^\s*\d+\/\s*\d+\/\d+\s+\d+\s+(.+)$/gm);
     return matches
       ? matches.map((line) => {
@@ -29,7 +29,7 @@ export async function listOnus() {
         }
 
         const res = await oltListOnus(command[i]);
-        const descriptions = extractOnus(res, fsp);
+        const descriptions = extractOlts(res, fsp);
         if (!descriptions.length) {
           console.warn("Nenhuma ONU encontrada!");
           return;
@@ -72,12 +72,13 @@ export async function listOnus() {
             dataInfoArray[i],
             { upsert: true, new: true }
           );
-          console.log("ONU no MongoDB:", updatedOnu);
+          console.log("OLT no MongoDB:", updatedOnu);
         }
       } catch (error) {
-        console.error("Erro ao listar ONUs:", error);
+        console.error("Erro ao listar OLTs:", error);
       }
     }
   }
+
   return run();
 }

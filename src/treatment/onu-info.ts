@@ -1,7 +1,7 @@
-import { oltVersion } from "../commands/infoDisco";
+import { onusInfo } from "../commands/infoDisco";
 import Info from "../models/info";
 
-export async function oltInfo() {
+export async function onuInfo() {
   function extractInfo(output: string, regex: RegExp) {
     const matches = output.match(regex);
     if (!matches) return [];
@@ -12,7 +12,7 @@ export async function oltInfo() {
     });
   }
 
-  const res = await oltVersion("display version");
+  const res = await onusInfo("display version");
   const regex =
     /VERSION\s*:\s*(MA5800V100R018C\d{2})|PATCH\s*:\s*(SPH102)|PRODUCT\s*:\s*(MA5800-X17)|(\d+ day\(s\), \d+ hour\(s\), \d+ minute\(s\), \d+ second\(s\))/g;
 
@@ -31,5 +31,5 @@ export async function oltInfo() {
   );
 
   console.log("Info/ONU no MongoDB:", updatedOnu);
-  return extractedInfo;
+  return updatedOnu;
 }

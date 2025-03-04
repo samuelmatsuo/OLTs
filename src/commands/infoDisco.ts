@@ -19,7 +19,7 @@ export async function oltListOnus(command: string) {
   connection.end();
 }
 
-export async function oltVersion(command: string) {
+export async function onusInfo(command: string) {
   const connection = await connectionTelnet();
 
   await connection.send("admin", { waitFor: "User password:" });
