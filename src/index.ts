@@ -5,8 +5,7 @@ import { oltInfo } from "./treatment/olt-info";
 
 async function main() {
   await connectMongo();
-  console.log("Banco de dados conectado, iniciando listOnus...");
   await listOnus();
+  //await oltInfo();
 }
 main();
-//oltInfo("version");
