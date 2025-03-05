@@ -1,4 +1,4 @@
-import { onusInfo } from "../commands/infoDisco";
+import { onusInfo } from "../commands/sendInfo";
 import Info from "../models/info";
 
 export async function onuInfo() {

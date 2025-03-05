@@ -27,6 +27,6 @@ export async function registerOnuHandler(data: any) {
       message: "Usuário criado com sucesso",
     };
   } catch (error) {
-    console.log("Erro ao registrar usuário");
+    throw new Error("erro ao resgistrar o usuário");
   }
 }

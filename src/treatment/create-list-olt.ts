@@ -1,4 +1,4 @@
-import { oltListOnus } from "../commands/infoDisco";
+import { oltListOnus } from "../commands/sendInfo";
 import Onu from "../models/olt";
 
 const command = ["display ont info 0 1 2 all", "display ont info 0 1 1 all"];
@@ -81,7 +81,7 @@ export async function listOnus() {
       } catch (error: Error | any) {
         if (error.message === "Erro na conexão Telnet") {
           throw new Error(
-            "Nao foi possivel conectar ao OLT verifique se o ip e a porta estao corretos"
+            "Nao foi possivel conectar ao ONU verifique se o ip e a porta estao corretos"
           );
         } else {
           throw new Error(error.message);
