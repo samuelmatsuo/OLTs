@@ -25,8 +25,10 @@ export async function connectionTelnet() {
   try {
     await connection.connect(params);
     console.log("Conexão realizada com sucesso!");
+    return connection;
   } catch (error) {
     console.error("Erro na conexão Telnet:", error);
+    throw new Error("Erro na conexão Telnet");
   }
   return connection;
 }

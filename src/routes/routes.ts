@@ -12,8 +12,9 @@ app.get("/list-onus", async (req, res) => {
   try {
     await listOnus();
     res.send("OK");
-  } catch (error) {
-    res.status(500).send("Erro ao listar Onus");
+  } catch (error: Error | any) {
+    console.error(error.message);
+    res.status(500).send(error.message);
   }
 });
 app.get("/olt-info", async (req, res) => {

@@ -2,6 +2,7 @@ import { connectionTelnet } from "../connections/connectionTelnet";
 
 export async function oltListOnus(command: string) {
   const connection = await connectionTelnet();
+  console.log(connection + " aaaaaaaaaaa");
 
   await connection.send("admin", { waitFor: "User password:" });
   await connection.send("admin", { waitFor: ">" });
@@ -30,6 +31,4 @@ export async function onusInfo(command: string) {
   const res = await connection.send(command, { waitFor: ">" });
 
   return res;
-
-  connection.end();
 }

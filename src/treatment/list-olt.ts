@@ -3,6 +3,12 @@ import Onu from "../models/olt";
 
 const command = ["display ont info 0 1 2 all", "display ont info 0 1 1 all"];
 export async function listOnus() {
+  const ip = (globalThis as any).globalOnuData.ip;
+  const port = (globalThis as any).globalOnuData.port;
+  if (!ip || !port) {
+    throw new Error("Sem nenhum ONU selecionado");
+  }
+
   function extractOlts(output: string, fsp: string) {
     const matches = output.match(/^\s*\d+\/\s*\d+\/\d+\s+\d+\s+(.+)$/gm);
     return matches
@@ -72,8 +78,14 @@ export async function listOnus() {
           );
           console.log("OLT no MongoDB:", updatedOnu);
         }
-      } catch (error) {
-        console.error("Erro ao listar OLTs:", error);
+      } catch (error: Error | any) {
+        if (error.message === "Erro na conexão Telnet") {
+          throw new Error(
+            "Nao foi possivel conectar ao OLT verifique se o ip e a porta estao corretos"
+          );
+        } else {
+          throw new Error(error.message);
+        }
       }
     }
   }
