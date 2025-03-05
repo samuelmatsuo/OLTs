@@ -34,8 +34,6 @@ export async function listOnus() {
           console.warn("Nenhuma ONU encontrada!");
           return;
         }
-        console.log(descriptions);
-
         const metadeLength = Math.floor(descriptions.length / 2);
         const length = descriptions.length;
 

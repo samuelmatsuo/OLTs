@@ -5,9 +5,14 @@ dotenv.config();
 export async function connectionTelnet() {
   const connection = new Telnet();
 
+  const ip = (globalThis as any).globalOnuData.ip;
+  console.log(ip);
+  const port = (globalThis as any).globalOnuData.port;
+  console.log(port);
+
   const params = {
-    host: process.env.TELNET_HOST,
-    port: process.env.TELNET_PORT,
+    host: ip,
+    port: port,
     timeout: 5000,
     shellPrompt: ">",
     loginPrompt: process.env.TELNET_LOGIN_PROMPT,

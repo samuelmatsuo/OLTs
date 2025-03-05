@@ -21,7 +21,7 @@ app.get("/olt-info", async (req, res) => {
     const info = await onuInfo();
     res.send("OK\n" + info);
   } catch (error) {
-    res.status(500).send("Erro ao listar Onus");
+    res.status(500).send("Erro ao listar ONUs");
   }
 });
 
@@ -39,7 +39,7 @@ app.get("/find-onu", async (req, res) => {
     const onu = await findByIdOnu(req.headers["id"]);
     res.send(onu);
   } catch (error) {
-    res.status(500).send("Erro ao criar Onu");
+    res.status(500).send("Erro ao buscar Onu");
   }
 });
 export default app;
